@@ -97,6 +97,19 @@ public class NumberTriangle {
      *
      */
     public int retrieve(String path) {
+        NumberTriangle current = this;
+        for (int i = 0; i < path.length(); i++) {
+            char c = path.charAt(i);
+            if (c == 'l') {
+                current = current.left;
+            } else if (c == 'r') {
+                current = current.right;
+            }
+            if (current == null) {
+                throw new IllegalArgumentException("Path leads to null node");
+            }
+        }
+        return current.getRoot();
     }
 
     /** Read in the NumberTriangle structure from a file.
